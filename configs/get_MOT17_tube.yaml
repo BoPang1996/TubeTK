@@ -1,0 +1,5 @@
+min_visibility: -0.1
+tube_thre: 0.8
+forward_frames: 4
+frame_stride: 1
+value_range: 1

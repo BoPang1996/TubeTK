@@ -1,0 +1,8 @@
+min_visibility: -0.1
+forward_frames: 4
+frame_stride: 1
+# pretrain_model_path: '/home/pb/models/3DTracking/3DFCOS_JTA_iou_withoutRegLoss'
+pretrain_model_path: ''
+backbone: 'res50'
+img_size: [896, 1152]
+tube_limit: 700  # if out of memory, you can reduce it, but the performance may be effected

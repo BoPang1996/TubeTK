@@ -1,0 +1,8 @@
+torch==1.1.0
+torchvision
+tqdm
+tensorboardX
+PyYAML==5.1.2
+opencv-python
+Pillow
+easydict
