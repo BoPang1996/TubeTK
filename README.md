@@ -1,7 +1,7 @@
 # TubeTK
 
 TubeTK is an one-step end-to-end multi-object tracking method, which is the **first end-to-end** open-source system that achieves **60+ MOTA** on MOT-16 (64 MOTA) and MOT-17 (63 MOTA) datasets. 
-Our paper "[TubeTK: Adopting Tubes to Track Multi-Object in a One-Step Training Model](https://bopang1996.github.io/posts/2020/04/tubeTKpaper/)" is accepted to CVPR 2020.
+Our paper "[TubeTK: Adopting Tubes to Track Multi-Object in a One-Step Training Model](https://bopang1996.github.io/posts/2020/04/tubeTKpaper/)" is accepted as an oral paper on CVPR-2020.
 
 
 
@@ -109,7 +109,7 @@ Results on MOT-17 dataset:
 Run TubeTK for a video and visualization the results with:
 
 ```Shell
-python launch.py --nproc_per <num of GPU> --training_script demo.py --batch_size=3 --config TubeTK_resnet_50_FPN_8frame_1stride.yaml --video_url <folder/to/the/videos> --output_dir ./vis_video
+python launch.py --nproc_per <num of GPU> --training_script demo.py --batch_size=3 --config configs/TubeTK_resnet_50_FPN_8frame_1stride.yaml --video_url <folder/to/the/videos> --output_dir ./vis_video
 ```
 
 
@@ -121,7 +121,7 @@ python launch.py --nproc_per <num of GPU> --training_script demo.py --batch_size
 2. To get the tracking result with:
 
    ```Shell
-   python launch.py --nproc_per <num of GPU> --training_script evaluate.py --batch_size 3 --config TubeTK_resnet_50_FPN_8frame_1stride.yaml --trainOrTest test
+   python launch.py --nproc_per <num of GPU> --training_script evaluate.py --batch_size 3 --config configs/TubeTK_resnet_50_FPN_8frame_1stride.yaml --trainOrTest test
    ```
 
 3. To get the visualization with: 
