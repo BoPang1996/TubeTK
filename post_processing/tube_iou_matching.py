@@ -252,20 +252,20 @@ def filt_bbox(save_path):
             return new_track, ip_cnt
 
     param_pairs = [
-        (['05'], [0, 4, 8]),
-        (['10'], [0, 6, 8]),
-        (['11'], [0, 6, 8]),
-        (['13'], [0, 9, 8]),
-        (['02'], [0, 6, 8]),
-        (['09'], [0, 4, 8]),
-        (['04'], [0, 12, 8]),
-        (['06'], [0, 4, 8]),
-        (['07'], [0, 6, 8]),
-        (['12'], [0, 6, 8]),
-        (['14'], [0, 9, 8]),
-        (['01'], [0, 6, 30]),
-        (['08'], [0, 4, 30]),
-        (['03'], [0, 12, 30])
+        (['-05-'], [0, 4, 8]),
+        (['-10-'], [0, 6, 8]),
+        (['-11-'], [0, 6, 8]),
+        (['-13-'], [0, 9, 8]),
+        (['-02-'], [0, 6, 8]),
+        (['-09-'], [0, 4, 8]),
+        (['-04-'], [0, 12, 8]),
+        (['-06-'], [0, 4, 8]),
+        (['-07-'], [0, 6, 8]),
+        (['-12-'], [0, 6, 8]),
+        (['-14-'], [0, 9, 8]),
+        (['-01-'], [0, 6, 30]),
+        (['-08-'], [0, 4, 30]),
+        (['-03-'], [0, 12, 30])
     ]
     params = {}
     for file_nums, param in param_pairs:
@@ -276,19 +276,20 @@ def filt_bbox(save_path):
             file_num = k
         elif k in save_path:
             assert False
-    assert file_num is not None
+    # assert file_num is not None
     res = pd.read_csv(save_path, header=None)
-
-    min_num = params[file_num][0]
-    min_bbox = params[file_num][1]
-    res = bboxfilt(res, min_bbox)
-    filtered_tracks = [x[0] for x in res.groupby(1) if trackfilt(x[1], min_num)]
-    inds = [res.iloc[x, 1] not in filtered_tracks for x in range(len(res))]
-    res = res[inds]
-    inds = np.unique(res[1])
-    dict_map = {x: i + 1 for i, x in enumerate(inds)}
-    res[1] = res[1].map(lambda x: dict_map[x])
-#    res.to_csv(save_path, header=None, index=False)
+    
+    if file_num is not None:
+        min_num = params[file_num][0]
+        min_bbox = params[file_num][1]
+        res = bboxfilt(res, min_bbox)
+        filtered_tracks = [x[0] for x in res.groupby(1) if trackfilt(x[1], min_num)]
+        inds = [res.iloc[x, 1] not in filtered_tracks for x in range(len(res))]
+        res = res[inds]
+        inds = np.unique(res[1])
+        dict_map = {x: i + 1 for i, x in enumerate(inds)}
+        res[1] = res[1].map(lambda x: dict_map[x])
+        # res.to_csv(save_path, header=None, index=False)
 
     # track complete part
     tracks = res.groupby(1)
