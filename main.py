@@ -101,7 +101,7 @@ def train(model, optimizer, data_loader, scheduler, writer, max_acc=0, step_star
     model.train()
     if train_arg.apex:
         model.apply(fix_bn)
-    if train_arg.rank == 0:
+    if train_arg.local_rank == 0:
         loader = tqdm(loader, ncols=20)
 
     loader_len = len(loader)
